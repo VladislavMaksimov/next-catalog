@@ -6,7 +6,7 @@ export const getUsers = async (): Promise<User[] | never> => {
     const res = await fetch(url);
     if (res.status !== 200)
       return Promise.reject(
-        new Error(`Response returned with status ${res.status}`)
+        new Error(`Response returned with status ${res.status}`),
       );
     const data = await res.json();
     return data;

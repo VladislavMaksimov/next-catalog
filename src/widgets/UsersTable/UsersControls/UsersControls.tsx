@@ -1,9 +1,10 @@
-import { Form } from "react-bootstrap";
-import { User, UserGender, UserSubscription } from "../../../pages/api/users";
-import { Search } from "../../../entities/Search/Search";
-import { FC, useState } from "react";
-import styles from "./UsersControls.module.css";
 import { Table } from "@tanstack/react-table";
+import { FC } from "react";
+import { Form } from "react-bootstrap";
+
+import { Search } from "../../../entities/Search/Search";
+import { User, UserGender, UserSubscription } from "../../../pages/api/users";
+import styles from "./UsersControls.module.css";
 
 interface UsersControlsProps {
   table: Table<User>;

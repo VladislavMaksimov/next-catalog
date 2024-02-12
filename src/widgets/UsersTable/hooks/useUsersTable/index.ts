@@ -1,9 +1,10 @@
 import {
-  useReactTable,
   getCoreRowModel,
-  getPaginationRowModel,
   getFilteredRowModel,
+  getPaginationRowModel,
+  useReactTable,
 } from "@tanstack/react-table";
+
 import { User } from "../../../../pages/api/users";
 import { columns } from "./columns";
 

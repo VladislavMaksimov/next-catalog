@@ -1,8 +1,9 @@
-import { FilterFn, Row, createColumnHelper } from "@tanstack/react-table";
-import { Image } from "react-bootstrap";
-import { User, UserGender } from "../../../../pages/api/users";
-import styles from "./columns.module.css";
+import { createColumnHelper } from "@tanstack/react-table";
 import dayjs from "dayjs";
+import { Image } from "react-bootstrap";
+
+import { User } from "../../../../pages/api/users";
+import styles from "./columns.module.css";
 
 const columnHelper = createColumnHelper<User>();
 

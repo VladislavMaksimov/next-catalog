@@ -1,9 +1,10 @@
 import { FC, useState } from "react";
+
 import { User } from "../../pages/api/users";
-import { useUsersTable } from "./hooks/useUsersTable";
 import { Pagination } from "../../shared/Pagination/Pagination";
 import { Table } from "../../shared/Table";
 import { UsersControls } from "./UsersControls/UsersControls";
+import { useUsersTable } from "./hooks/useUsersTable";
 
 interface UsersTableProps {
   users: User[];

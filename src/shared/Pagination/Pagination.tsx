@@ -1,5 +1,6 @@
 import { FC } from "react";
 import { Pagination as RBPagination } from "react-bootstrap";
+
 import { getPaginationItems } from "./utils/getPaginationItems";
 
 interface PaginationProps {
