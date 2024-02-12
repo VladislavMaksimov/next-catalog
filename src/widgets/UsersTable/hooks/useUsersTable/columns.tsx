@@ -17,6 +17,7 @@ export const columns = [
         rounded
       />
     ),
+    enableGlobalFilter: false,
   }),
   columnHelper.accessor("firstName", {
     header: "First name",
@@ -33,6 +34,7 @@ export const columns = [
   columnHelper.accessor("birthdate", {
     header: "Date of birth",
     cell: (info) => <time>{dayjs(info.getValue()).format("DD.MM.YYYY")}</time>,
+    enableGlobalFilter: false,
   }),
   columnHelper.accessor("gender", {
     header: "Gender",
@@ -56,5 +58,6 @@ export const columns = [
     cell: (info) => (
       <time>{dayjs(info.getValue()).format("DD.MM.YYYY [at] HH:mm:ss")}</time>
     ),
+    enableGlobalFilter: false,
   }),
 ];

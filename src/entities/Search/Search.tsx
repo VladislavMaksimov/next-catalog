@@ -3,19 +3,24 @@ import { Button, Form } from "react-bootstrap";
 import styles from "./Search.module.css";
 
 export interface SearchProps {
+  value?: string;
   label?: string;
-  value: string;
 
-  onChange: (value: string) => void;
   onSearch: (value: string) => void;
+  onChange?: (value: string) => void;
 }
 
 export const Search: FC<SearchProps> = ({
-  label,
   value,
-  onChange,
+  label,
   onSearch,
+  onChange,
 }) => {
+  const [innerState, setInnerState] = useState<string>("");
+
+  const searchValue = value ? value : innerState;
+  const onSearchChange = onChange ? onChange : setInnerState;
+
   return (
     <Form
       onSubmit={(e) => {
@@ -28,14 +33,14 @@ export const Search: FC<SearchProps> = ({
           <Form.Control
             className={styles.search}
             type="text"
-            value={value}
-            onChange={(e) => onChange(e.target.value)}
+            value={searchValue}
+            onChange={(e) => onSearchChange(e.target.value)}
             onKeyDown={(e) => {
-              if (e.key === "Enter") onSearch(value);
+              if (e.key === "Enter") onSearch(searchValue);
             }}
           />
         </Form.Group>
-        <Button onClick={() => onSearch(value)}>Search</Button>
+        <Button onClick={() => onSearch(searchValue)}>Search</Button>
       </div>
     </Form>
   );

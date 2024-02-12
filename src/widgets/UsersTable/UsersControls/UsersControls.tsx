@@ -15,8 +15,6 @@ export const UsersControls: FC<UsersControlsProps> = ({
   table,
   onFullTextSearch,
 }) => {
-  const [fullText, setFullText] = useState<string>("");
-
   const genderColumn = table.getColumn("gender")!;
   const genderFilterValue = genderColumn.getFilterValue() as
     | UserGender
@@ -29,12 +27,7 @@ export const UsersControls: FC<UsersControlsProps> = ({
 
   return (
     <div className="d-flex flex-column gap-3">
-      <Search
-        label="Search users"
-        value={fullText}
-        onSearch={onFullTextSearch}
-        onChange={(value: string) => setFullText(value)}
-      />
+      <Search label="Search users" onSearch={onFullTextSearch} />
       <div className="d-flex gap-3">
         <Form.Select
           className={styles.select}
