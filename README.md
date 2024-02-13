@@ -4,7 +4,8 @@
 
 1. `git clone https://github.com/VladislavMaksimov/next-catalog`
 2. `npm i`
-3. `npm run dev`
+3. Создать в корне проекта файл `.env.local`. Скопировать в него содержимое `.env.example`.
+4. `npm run dev`
 
 ## Структура приложения
 
