@@ -6,7 +6,8 @@ import { toast } from "react-toastify";
 import { useGetUsers } from "../backend/hooks/useGetUsers";
 import { UsersTable } from "../widgets/UsersTable/UsersTable";
 
-Inter({ subsets: ["latin"] });
+// eslint-disable-next-line @typescript-eslint/no-unused-vars
+const inter = Inter({ subsets: ["latin"] });
 
 export default function Home() {
   const { users, isSuccess, isError, error } = useGetUsers();

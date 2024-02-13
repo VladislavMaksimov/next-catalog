@@ -19,33 +19,40 @@ export const columns = [
       />
     ),
     enableGlobalFilter: false,
+    enableSorting: false,
   }),
   columnHelper.accessor("firstName", {
     header: "First name",
     cell: (info) => info.renderValue(),
+    enableSorting: false,
   }),
   columnHelper.accessor("lastName", {
     header: "Last name",
     cell: (info) => info.renderValue(),
+    enableSorting: false,
   }),
   columnHelper.accessor("age", {
     header: "Age",
     cell: (info) => info.renderValue(),
+    sortingFn: "basic",
   }),
   columnHelper.accessor("birthdate", {
     header: "Date of birth",
     cell: (info) => <time>{dayjs(info.getValue()).format("DD.MM.YYYY")}</time>,
     enableGlobalFilter: false,
+    sortingFn: "datetime",
   }),
   columnHelper.accessor("gender", {
     header: "Gender",
     cell: (info) => info.renderValue(),
     filterFn: "equalsString",
+    enableSorting: false,
   }),
   columnHelper.accessor("subscription", {
     header: "Subscription",
     cell: (info) => <span className="text-capitalize">{info.getValue()}</span>,
     filterFn: "equalsString",
+    enableSorting: false,
   }),
   columnHelper.accessor("email", {
     header: "Email",
@@ -53,6 +60,7 @@ export const columns = [
       const email = info.getValue();
       return <a href={`mailto:${email}`}>{email}</a>;
     },
+    enableSorting: false,
   }),
   columnHelper.accessor("createdAt", {
     header: "Created at",
@@ -60,5 +68,6 @@ export const columns = [
       <time>{dayjs(info.getValue()).format("DD.MM.YYYY [at] HH:mm:ss")}</time>
     ),
     enableGlobalFilter: false,
+    sortingFn: "datetime",
   }),
 ];
