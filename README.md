@@ -1,40 +1,33 @@
-This is a [Next.js](https://nextjs.org/) project bootstrapped with [`create-next-app`](https://github.com/vercel/next.js/tree/canary/packages/create-next-app).
+# Next Catalog
 
-## Getting Started
+## Запуск приложения
 
-First, run the development server:
+1. `git clone https://github.com/VladislavMaksimov/next-catalog`
+2. `npm i`
+3. `npm run dev`
 
-```bash
-npm run dev
-# or
-yarn dev
-# or
-pnpm dev
-# or
-bun dev
-```
+## Структура приложения
 
-Open [http://localhost:3000](http://localhost:3000) with your browser to see the result.
+Разбил компоненты по [Feature-Sliced Design](https://feature-sliced.design/):
 
-You can start editing the page by modifying `pages/index.tsx`. The page auto-updates as you edit the file.
+- `src/shared` - абстрактные переиспользуемые компоненты
+- `src/features` - компоненты с бизнес-логикой, которые приносят ценность пользователям (например, найти / отсортировать / отфильтровать юзеров)
+- `src/widgets` - комплексные компоненты, которые логически связывают компоненты с бизнес-логикой между собой (в нашем случае UsersTable в виджете объединяется с логикой получения юзеров с бэка и обработки ошибки запроса)
 
-[API routes](https://nextjs.org/docs/api-routes/introduction) can be accessed on [http://localhost:3000/api/hello](http://localhost:3000/api/hello). This endpoint can be edited in `pages/api/hello.ts`.
+Логику компонентов выношу в кастомные хуки, вдохновившись [статьёй](https://martinfowler.com/articles/modularizing-react-apps.html) про Presentation-Domain-Data в React-приложениях.
 
-The `pages/api` directory is mapped to `/api/*`. Files in this directory are treated as [API routes](https://nextjs.org/docs/api-routes/introduction) instead of React pages.
+## Технологический стек
 
-This project uses [`next/font`](https://nextjs.org/docs/basic-features/font-optimization) to automatically optimize and load Inter, a custom Google Font.
+**Основные инструменты:** `Next.js` + `TypeScript`
 
-## Learn More
+**Дополнительные инструменты:**
 
-To learn more about Next.js, take a look at the following resources:
+- `ESLint` + `Prettier`
+- `Bootstrap` + `React Bootstrap` для стилизации компонентов. Не очень люблю Bootstrap с т.з. дефолтного дизайна (и некоторых полезных классов там нет, вроде 'cursor-pointer'), и думал попробовать Tailwind, но у его компонентной обёртки много платных компонентов. Поэтому остановился на Bootstrap как популярном решении.
+- `TanStack Query` (бывшая React Query) для запросов, как популярное решение, которое закрывает основные требования к обвязкам запросов.
+- `TanStack Table` для таблиц, как мощную headless UI либу, которая позволяет гибко работать со своими компонентами (в данном случае, компонентами из React Bootstrap). В пользу неё сыграло также то, что в постановке задачи сказано, что представление данных может быть не только табличным (но и тайлами, например).
 
-- [Next.js Documentation](https://nextjs.org/docs) - learn about Next.js features and API.
-- [Learn Next.js](https://nextjs.org/learn) - an interactive Next.js tutorial.
+**Не использовал:**
 
-You can check out [the Next.js GitHub repository](https://github.com/vercel/next.js/) - your feedback and contributions are welcome!
-
-## Deploy on Vercel
-
-The easiest way to deploy your Next.js app is to use the [Vercel Platform](https://vercel.com/new?utm_medium=default-template&filter=next.js&utm_source=create-next-app&utm_campaign=create-next-app-readme) from the creators of Next.js.
-
-Check out our [Next.js deployment documentation](https://nextjs.org/docs/deployment) for more details.
+- Либу для форм, т.к. фильтры у меня работают не как одна форма. Сделал их обычными управляемыми компонентами. Если бы взял либу, то выбрал бы React Hook Form.
+- State менеджер, т.к. за состояние таблицы отвечает либа для таблиц, а за состояние данных, которые приходят с бэка - либа для запросов.
