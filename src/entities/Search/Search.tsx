@@ -35,13 +35,21 @@ export const Search: FC<SearchProps> = ({
             className={styles.search}
             type="text"
             value={searchValue}
-            onChange={(e) => onSearchChange(e.target.value)}
+            onChange={(e) => {
+              onSearchChange(e.target.value);
+            }}
             onKeyDown={(e) => {
               if (e.key === "Enter") onSearch(searchValue);
             }}
           />
         </Form.Group>
-        <Button onClick={() => onSearch(searchValue)}>Search</Button>
+        <Button
+          onClick={() => {
+            onSearch(searchValue);
+          }}
+        >
+          Search
+        </Button>
       </div>
     </Form>
   );

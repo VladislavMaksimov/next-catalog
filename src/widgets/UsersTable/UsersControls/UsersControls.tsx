@@ -1,6 +1,6 @@
 import { Table } from "@tanstack/react-table";
-import { FC } from "react";
-import { Form } from "react-bootstrap";
+import { FC, useState } from "react";
+import { Button, Form } from "react-bootstrap";
 
 import { Search } from "../../../entities/Search/Search";
 import { User, UserGender, UserSubscription } from "../../../pages/api/users";
@@ -26,9 +26,16 @@ export const UsersControls: FC<UsersControlsProps> = ({
     | UserSubscription
     | undefined;
 
+  const [fullText, setFulltext] = useState("");
+
   return (
     <div className="d-flex flex-column gap-3">
-      <Search label="Search users" onSearch={onFullTextSearch} />
+      <Search
+        label="Search users"
+        value={fullText}
+        onChange={(value) => setFulltext(value)}
+        onSearch={onFullTextSearch}
+      />
       <div className="d-flex gap-3">
         <Form.Select
           className={styles.select}
@@ -64,6 +71,18 @@ export const UsersControls: FC<UsersControlsProps> = ({
           <option value="business">Business</option>
         </Form.Select>
       </div>
+      <Button
+        className="align-self-start"
+        variant="secondary"
+        onClick={() => {
+          table.resetColumnFilters();
+          // reset global filter
+          setFulltext("");
+          onFullTextSearch("");
+        }}
+      >
+        Reset filters
+      </Button>
     </div>
   );
 };
