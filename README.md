@@ -1,34 +1,35 @@
 # Next Catalog
 
-## Запуск приложения
+This project was the test task for employment. I needed to make a small **Next.js** app with a catalog of users that could be presented in a table view or a grid of cards view.
+
+There should have been filtering and sorting, and pagination. One of the important conditions was to use libraries for some purposes or explain why didn't I use a library to write sth (see **Additional tools** below).
+
+<img alt="Catalog's screenshot" src="docs/catalog.png" />
+
+## 🚀 Launch
 
 1. `git clone https://github.com/VladislavMaksimov/next-catalog`
 2. `npm i`
-3. Создать в корне проекта файл `.env.local`. Скопировать в него содержимое `.env.example`.
+3. Create a `.env.local` or `.env` file in the root folder. Copy the content of `.env.example` to the created file.
 4. `npm run dev`
 
-## Структура приложения
+## ⚙️ Project Structure
 
-Разбил компоненты по [Feature-Sliced Design](https://feature-sliced.design/):
+The project was structured via [Feature-Sliced Design](https://feature-sliced.design/):
 
-- `src/shared` - абстрактные переиспользуемые компоненты
-- `src/features` - компоненты с бизнес-логикой, которые приносят ценность пользователям (например, найти / отсортировать / отфильтровать юзеров)
-- `src/widgets` - комплексные компоненты, которые логически связывают компоненты с бизнес-логикой между собой (в нашем случае UsersTable в виджете объединяется с логикой получения юзеров с бэка и обработки ошибки запроса)
+- `src/shared` - abstract and reusable components
+- `src/features` - components containing business logic and providing value to users (i.e. search, sort, or filter users)
+- `src/widgets` - complex components connecting features (in this case `UserTable` component is connected with fetching user and request error handling)
 
-Логику компонентов выношу в кастомные хуки, вдохновившись [статьёй](https://martinfowler.com/articles/modularizing-react-apps.html) про Presentation-Domain-Data в React-приложениях.
+Using custom hooks to divide the logic of a component and its layout is inspired by [an article](https://martinfowler.com/articles/modularizing-react-apps.html) about the Presentation-Domain-Data approach in React apps.
 
-## Технологический стек
+## 🛠 Tools
 
-**Основные инструменты:** `Next.js` + `TypeScript`
+**Main tools:** `Next.js` + `TypeScript`
 
-**Дополнительные инструменты:**
+**Additional tools:**
 
 - `ESLint` + `Prettier`
-- `Bootstrap` + `React Bootstrap` для стилизации компонентов. Не очень люблю Bootstrap с т.з. дефолтного дизайна (и некоторых полезных классов там нет, вроде 'cursor-pointer'), и думал попробовать Tailwind, но у его компонентной обёртки много платных компонентов. Поэтому остановился на Bootstrap как популярном решении.
-- `TanStack Query` (бывшая React Query) для запросов, как популярное решение, которое закрывает основные требования к обвязкам запросов.
-- `TanStack Table` для таблиц, как мощную headless UI либу, которая позволяет гибко работать со своими компонентами (в данном случае, компонентами из React Bootstrap). В пользу неё сыграло также то, что в постановке задачи сказано, что представление данных может быть не только табличным (но и тайлами, например).
-
-**Не использовал:**
-
-- Либу для форм, т.к. фильтры у меня работают не как одна форма. Сделал их обычными управляемыми компонентами. Если бы взял либу, то выбрал бы React Hook Form.
-- State менеджер, т.к. за состояние таблицы отвечает либа для таблиц, а за состояние данных, которые приходят с бэка - либа для запросов.
+- `Bootstrap` + `React Bootstrap` for styling components
+- `TanStack Query` for HTTP requests handling
+- `TanStack Table` for the table's logic handling
